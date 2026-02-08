@@ -49,6 +49,16 @@ namespace Calculadora
             this.b4 = new System.Windows.Forms.Button();
             this.b1 = new System.Windows.Forms.Button();
             this.b0 = new System.Windows.Forms.Button();
+            this.bPlus = new System.Windows.Forms.Button();
+            this.bRaiz = new System.Windows.Forms.Button();
+            this.bMod = new System.Windows.Forms.Button();
+            this.bDiv = new System.Windows.Forms.Button();
+            this.bMult = new System.Windows.Forms.Button();
+            this.bMinus = new System.Windows.Forms.Button();
+            this.bRes = new System.Windows.Forms.Button();
+            this.bBorrar = new System.Windows.Forms.Button();
+            this.bClean = new System.Windows.Forms.Button();
+            this.bBin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxProceso
@@ -57,8 +67,10 @@ namespace Calculadora
             this.textBoxProceso.Location = new System.Drawing.Point(0, 0);
             this.textBoxProceso.Multiline = true;
             this.textBoxProceso.Name = "textBoxProceso";
+            this.textBoxProceso.ReadOnly = true;
             this.textBoxProceso.Size = new System.Drawing.Size(443, 51);
             this.textBoxProceso.TabIndex = 0;
+            this.textBoxProceso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxOperacion
             // 
@@ -66,8 +78,10 @@ namespace Calculadora
             this.textBoxOperacion.Location = new System.Drawing.Point(0, 51);
             this.textBoxOperacion.Multiline = true;
             this.textBoxOperacion.Name = "textBoxOperacion";
+            this.textBoxOperacion.ReadOnly = true;
             this.textBoxOperacion.Size = new System.Drawing.Size(443, 133);
             this.textBoxOperacion.TabIndex = 1;
+            this.textBoxOperacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // botonA
             // 
@@ -127,16 +141,16 @@ namespace Calculadora
             // 
             // botonHex
             // 
-            this.botonHex.Location = new System.Drawing.Point(0, 508);
+            this.botonHex.Location = new System.Drawing.Point(0, 562);
             this.botonHex.Name = "botonHex";
             this.botonHex.Size = new System.Drawing.Size(75, 47);
             this.botonHex.TabIndex = 8;
-            this.botonHex.Text = "X";
+            this.botonHex.Text = "x";
             this.botonHex.UseVisualStyleBackColor = true;
             // 
             // b9
             // 
-            this.b9.Location = new System.Drawing.Point(334, 296);
+            this.b9.Location = new System.Drawing.Point(260, 296);
             this.b9.Name = "b9";
             this.b9.Size = new System.Drawing.Size(75, 47);
             this.b9.TabIndex = 9;
@@ -145,7 +159,7 @@ namespace Calculadora
             // 
             // b6
             // 
-            this.b6.Location = new System.Drawing.Point(334, 349);
+            this.b6.Location = new System.Drawing.Point(260, 349);
             this.b6.Name = "b6";
             this.b6.Size = new System.Drawing.Size(75, 47);
             this.b6.TabIndex = 10;
@@ -154,7 +168,7 @@ namespace Calculadora
             // 
             // b3
             // 
-            this.b3.Location = new System.Drawing.Point(334, 402);
+            this.b3.Location = new System.Drawing.Point(260, 402);
             this.b3.Name = "b3";
             this.b3.Size = new System.Drawing.Size(75, 47);
             this.b3.TabIndex = 11;
@@ -163,7 +177,7 @@ namespace Calculadora
             // 
             // b8
             // 
-            this.b8.Location = new System.Drawing.Point(253, 296);
+            this.b8.Location = new System.Drawing.Point(179, 296);
             this.b8.Name = "b8";
             this.b8.Size = new System.Drawing.Size(75, 47);
             this.b8.TabIndex = 12;
@@ -172,7 +186,7 @@ namespace Calculadora
             // 
             // b5
             // 
-            this.b5.Location = new System.Drawing.Point(253, 349);
+            this.b5.Location = new System.Drawing.Point(179, 349);
             this.b5.Name = "b5";
             this.b5.Size = new System.Drawing.Size(75, 47);
             this.b5.TabIndex = 13;
@@ -181,7 +195,7 @@ namespace Calculadora
             // 
             // b2
             // 
-            this.b2.Location = new System.Drawing.Point(253, 402);
+            this.b2.Location = new System.Drawing.Point(179, 402);
             this.b2.Name = "b2";
             this.b2.Size = new System.Drawing.Size(75, 47);
             this.b2.TabIndex = 14;
@@ -190,16 +204,17 @@ namespace Calculadora
             // 
             // b7
             // 
-            this.b7.Location = new System.Drawing.Point(172, 296);
+            this.b7.Location = new System.Drawing.Point(98, 296);
             this.b7.Name = "b7";
             this.b7.Size = new System.Drawing.Size(75, 47);
             this.b7.TabIndex = 15;
             this.b7.Text = "7";
             this.b7.UseVisualStyleBackColor = true;
+            this.b7.Click += new System.EventHandler(this.b7_Click);
             // 
             // b4
             // 
-            this.b4.Location = new System.Drawing.Point(172, 349);
+            this.b4.Location = new System.Drawing.Point(98, 349);
             this.b4.Name = "b4";
             this.b4.Size = new System.Drawing.Size(75, 47);
             this.b4.TabIndex = 16;
@@ -208,7 +223,7 @@ namespace Calculadora
             // 
             // b1
             // 
-            this.b1.Location = new System.Drawing.Point(172, 402);
+            this.b1.Location = new System.Drawing.Point(98, 402);
             this.b1.Name = "b1";
             this.b1.Size = new System.Drawing.Size(75, 47);
             this.b1.TabIndex = 17;
@@ -217,18 +232,122 @@ namespace Calculadora
             // 
             // b0
             // 
-            this.b0.Location = new System.Drawing.Point(172, 455);
+            this.b0.Location = new System.Drawing.Point(179, 455);
             this.b0.Name = "b0";
             this.b0.Size = new System.Drawing.Size(75, 47);
             this.b0.TabIndex = 18;
             this.b0.Text = "0";
             this.b0.UseVisualStyleBackColor = true;
             // 
+            // bPlus
+            // 
+            this.bPlus.Location = new System.Drawing.Point(356, 243);
+            this.bPlus.Name = "bPlus";
+            this.bPlus.Size = new System.Drawing.Size(75, 47);
+            this.bPlus.TabIndex = 19;
+            this.bPlus.Text = "+";
+            this.bPlus.UseVisualStyleBackColor = true;
+            // 
+            // bRaiz
+            // 
+            this.bRaiz.Location = new System.Drawing.Point(356, 509);
+            this.bRaiz.Name = "bRaiz";
+            this.bRaiz.Size = new System.Drawing.Size(75, 47);
+            this.bRaiz.TabIndex = 20;
+            this.bRaiz.Text = "√";
+            this.bRaiz.UseVisualStyleBackColor = true;
+            // 
+            // bMod
+            // 
+            this.bMod.Location = new System.Drawing.Point(356, 455);
+            this.bMod.Name = "bMod";
+            this.bMod.Size = new System.Drawing.Size(75, 47);
+            this.bMod.TabIndex = 21;
+            this.bMod.Text = "%";
+            this.bMod.UseVisualStyleBackColor = true;
+            this.bMod.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // bDiv
+            // 
+            this.bDiv.Location = new System.Drawing.Point(356, 402);
+            this.bDiv.Name = "bDiv";
+            this.bDiv.Size = new System.Drawing.Size(75, 47);
+            this.bDiv.TabIndex = 22;
+            this.bDiv.Text = "÷";
+            this.bDiv.UseVisualStyleBackColor = true;
+            this.bDiv.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // bMult
+            // 
+            this.bMult.Location = new System.Drawing.Point(356, 349);
+            this.bMult.Name = "bMult";
+            this.bMult.Size = new System.Drawing.Size(75, 47);
+            this.bMult.TabIndex = 23;
+            this.bMult.Text = "X";
+            this.bMult.UseVisualStyleBackColor = true;
+            // 
+            // bMinus
+            // 
+            this.bMinus.Location = new System.Drawing.Point(356, 296);
+            this.bMinus.Name = "bMinus";
+            this.bMinus.Size = new System.Drawing.Size(75, 47);
+            this.bMinus.TabIndex = 24;
+            this.bMinus.Text = "-";
+            this.bMinus.UseVisualStyleBackColor = true;
+            // 
+            // bRes
+            // 
+            this.bRes.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bRes.ForeColor = System.Drawing.SystemColors.Window;
+            this.bRes.Location = new System.Drawing.Point(356, 562);
+            this.bRes.Name = "bRes";
+            this.bRes.Size = new System.Drawing.Size(75, 47);
+            this.bRes.TabIndex = 25;
+            this.bRes.Text = "=";
+            this.bRes.UseVisualStyleBackColor = false;
+            // 
+            // bBorrar
+            // 
+            this.bBorrar.Location = new System.Drawing.Point(356, 190);
+            this.bBorrar.Name = "bBorrar";
+            this.bBorrar.Size = new System.Drawing.Size(75, 47);
+            this.bBorrar.TabIndex = 26;
+            this.bBorrar.Text = "⌫";
+            this.bBorrar.UseVisualStyleBackColor = true;
+            // 
+            // bClean
+            // 
+            this.bClean.Location = new System.Drawing.Point(260, 190);
+            this.bClean.Name = "bClean";
+            this.bClean.Size = new System.Drawing.Size(75, 47);
+            this.bClean.TabIndex = 27;
+            this.bClean.Text = "CLR";
+            this.bClean.UseVisualStyleBackColor = true;
+            // 
+            // bBin
+            // 
+            this.bBin.Location = new System.Drawing.Point(98, 562);
+            this.bBin.Name = "bBin";
+            this.bBin.Size = new System.Drawing.Size(75, 47);
+            this.bBin.TabIndex = 28;
+            this.bBin.Text = "b";
+            this.bBin.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 566);
+            this.ClientSize = new System.Drawing.Size(443, 621);
+            this.Controls.Add(this.bBin);
+            this.Controls.Add(this.bClean);
+            this.Controls.Add(this.bBorrar);
+            this.Controls.Add(this.bRes);
+            this.Controls.Add(this.bMinus);
+            this.Controls.Add(this.bMult);
+            this.Controls.Add(this.bDiv);
+            this.Controls.Add(this.bMod);
+            this.Controls.Add(this.bRaiz);
+            this.Controls.Add(this.bPlus);
             this.Controls.Add(this.b0);
             this.Controls.Add(this.b1);
             this.Controls.Add(this.b4);
@@ -250,6 +369,7 @@ namespace Calculadora
             this.Controls.Add(this.textBoxProceso);
             this.Name = "Form1";
             this.Text = "Calculadora";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,6 +401,16 @@ namespace Calculadora
         private System.Windows.Forms.Button b4;
         private System.Windows.Forms.Button b1;
         private System.Windows.Forms.Button b0;
+        private System.Windows.Forms.Button bPlus;
+        private System.Windows.Forms.Button bRaiz;
+        private System.Windows.Forms.Button bMod;
+        private System.Windows.Forms.Button bDiv;
+        private System.Windows.Forms.Button bMult;
+        private System.Windows.Forms.Button bMinus;
+        private System.Windows.Forms.Button bRes;
+        private System.Windows.Forms.Button bBorrar;
+        private System.Windows.Forms.Button bClean;
+        private System.Windows.Forms.Button bBin;
     }
 }
 

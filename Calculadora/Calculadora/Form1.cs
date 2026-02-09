@@ -84,15 +84,15 @@ namespace Calculadora
             return int.Parse(n);
         }
 
-        //Método para procesar operación
+        //Método para procesar operación con dos operandos y un operador
         void ProcesarOp()
         {
-            string expresion = txtOperacion.Text;
+            string expresion = textBoxProceso.Text;
             char[] operador = { '+', '-', 'X', '÷', '%', '√' };
 
             foreach (char op in operador)
             {
-                if(expresion.Contains(op))
+                if (expresion.Contains(op))
                 {
                     string[] p = expresion.Split(op);
                     if (p.Length != 2)
@@ -103,36 +103,23 @@ namespace Calculadora
                     int a = ConvertirADecimal(p[0]);
                     int b = ConvertirADecimal(p[1]);
 
-                    txtRes.Text = Operacion(a, b, op).ToString();
+                    textBoxOperacion.Text = Operacion(a, b, op).ToString();
                 }
             }
 
         }
 
-
-        private void botonB_Click(object sender, EventArgs e)
+        //Método para controlar todos los botones (menos CRL Y borrar) porque todos hacen "lo mismo", escribir algo en el textbox
+        private void ClickGeneral(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
 
-        }
-
-        private void botonC_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void b7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
+            if (b.Text == "x")
+                textBoxProceso.Text += "0x"; //Se escribe 0x y se "activa" el sistema binario
+            else if (b.Text == "b")
+                textBoxProceso.Text += "0b"; //Se escribe 0b y se "activa" el sistema binario
+            else
+                textBoxProceso.Text += b.Text;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -140,9 +127,24 @@ namespace Calculadora
 
         }
 
-        private void bMult_Click(object sender, EventArgs e)
+        //Método para borrar todo
+        private void bClean_Click(object sender, EventArgs e)
         {
+            textBoxProceso.Text = "";
+            textBoxOperacion.Text = "";
+        }
 
+        //Método para borrar el último caracter
+        private void bBorrar_Click(object sender, EventArgs e)
+        {
+            if(textBoxProceso.Text.Length > 0)
+                textBoxProceso.Text = textBoxProceso.Text.Substring(0, textBoxProceso.Text.Length - 1);
+        }
+
+        //Método para mostrar resultado en el textBoxOperacion
+        private void bRes_Click(object sender, EventArgs e)
+        {
+            ProcesarOp();
         }
     }
 }

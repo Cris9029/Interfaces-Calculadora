@@ -285,6 +285,7 @@ namespace Calculadora
             this.bMult.TabIndex = 23;
             this.bMult.Text = "X";
             this.bMult.UseVisualStyleBackColor = true;
+            this.bMult.Click += new System.EventHandler(this.bMult_Click);
             // 
             // bMinus
             // 

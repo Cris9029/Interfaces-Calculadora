@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Calculadora
 {
     public partial class Form1 : Form
-    {
+    { 
         enum sistemaNum {Decimal, Binario, Hexa}
         
         public Form1()
@@ -54,8 +54,12 @@ namespace Calculadora
         //Método para ver que el caracter sea válido según lo puesto al principio
         bool EsValido(string n)
         {
+            n = n.Trim();
+            if(String.IsNullOrEmpty(n))
+                return true; //Si el string está vacío, no hay nada inválido
+
             sistemaNum s = DetectaSistema(n);
-            string quitaPre = n.Replace("0b", "").Replace("0x", "");
+            string quitaPre = n.Replace("0b", "").Replace("0x", "").Replace(" ", "");
 
             foreach (char c in quitaPre)
             {
@@ -72,6 +76,10 @@ namespace Calculadora
         //Método para convertir todo a sistema decimal
         int ConvertirADecimal(string n)
         {
+            n = n.Trim();
+            
+            if(String.IsNullOrEmpty(n))
+                return 0;
             if (n.StartsWith("0b"))
                 return Convert.ToInt32(n.Substring(2), 2); //El substring(2) quita el 0b, base 2
             if (n.StartsWith("0x"))
@@ -87,39 +95,75 @@ namespace Calculadora
         //Método para procesar operación con dos operandos y un operador
         void ProcesarOp()
         {
-            string expresion = textBoxProceso.Text;
-            char[] operador = { '+', '-', 'X', '÷', '%', '√' };
+            string expresion = textBoxProceso.Text.Replace(" ", "");
+            //char[] operador = { '+', '-', 'X', '÷', '%', '√' };
 
-            foreach (char op in operador)
+            if (string.IsNullOrEmpty(expresion))
+                return;
+
+            if(expresion.EndsWith("+") || expresion.EndsWith("-") ||expresion.EndsWith("X") || expresion.EndsWith("÷") ||
+                expresion.EndsWith("%") || expresion.EndsWith("√"))
+                return;
+
+            List<string> tokens = new List<string>();
+            string numActual = "";
+
+            foreach (char c in expresion)
             {
-                if (expresion.Contains(op))
+                if ("+-X÷%√".Contains(c))
                 {
-                    string[] p = expresion.Split(op);
-                    if (p.Length != 2)
-                        return;
-                    if (!EsValido(p[0]) || !EsValido(p[1]))
-                        return;
-
-                    int a = ConvertirADecimal(p[0]);
-                    int b = ConvertirADecimal(p[1]);
-
-                    textBoxOperacion.Text = Operacion(a, b, op).ToString();
+                    tokens.Add(numActual);
+                    tokens.Add(c.ToString());
+                    numActual = "";
                 }
+                else
+                    numActual += c;
             }
 
+            tokens.Add(numActual);
+
+            //Covertir todo a decimal
+            for (int i = 0; i < tokens.Count; i += 2)
+                tokens[i] = ConvertirADecimal(tokens[i]).ToString();
+
+            int res = int.Parse(tokens[0]);
+
+            for(int i = 1; i < tokens.Count; i += 2)
+            {
+                char op = tokens[i][0];
+                int sig = int.Parse(tokens[i + 1]);
+
+                res = Operacion(res, sig, op);
+            }
+            textBoxOperacion.Text = res.ToString();
         }
 
         //Método para controlar todos los botones (menos CRL Y borrar) porque todos hacen "lo mismo", escribir algo en el textbox
         private void ClickGeneral(object sender, EventArgs e)
         {
             Button b = (Button)sender;
+            string intento;
+
+            bool esOperador = b.Text == "+" || b.Text == "-" || b.Text == "X" || b.Text == "÷" || b.Text == "%" || b.Text == "√";
 
             if (b.Text == "x")
-                textBoxProceso.Text += "0x"; //Se escribe 0x y se "activa" el sistema binario
-            else if (b.Text == "b")
-                textBoxProceso.Text += "0b"; //Se escribe 0b y se "activa" el sistema binario
+            {
+                if(!textBoxProceso.Text.EndsWith("0"))
+                    intento = textBoxProceso.Text + "0x"; //Se escribe 0x y se "activa" el sistema binario
+                else
+                    intento = textBoxProceso.Text + "x";
+            }
+            else if(b.Text == "b")
+                intento = textBoxProceso.Text + "0b"; //Se escribe 0b y se "activa" el sistema binario
+            else if(esOperador)
+                intento = textBoxProceso.Text + " " + b.Text + " "; //Se añaden espacios para separar el operador de los operandos
             else
-                textBoxProceso.Text += b.Text;
+                intento = textBoxProceso.Text + b.Text; //Si no es operador, se añade el número o letra directamente
+
+            textBoxProceso.Text = intento;
+
+            if(esOperador)
+                ProcesarOp();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -131,7 +175,7 @@ namespace Calculadora
         private void bClean_Click(object sender, EventArgs e)
         {
             textBoxProceso.Text = "";
-            textBoxOperacion.Text = "";
+            textBoxOperacion.Text = "0";
         }
 
         //Método para borrar el último caracter

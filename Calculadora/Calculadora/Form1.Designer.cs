@@ -30,6 +30,7 @@ namespace Calculadora
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBoxProceso = new System.Windows.Forms.TextBox();
             this.textBoxOperacion = new System.Windows.Forms.TextBox();
             this.botonA = new System.Windows.Forms.Button();
@@ -63,9 +64,10 @@ namespace Calculadora
             // 
             // textBoxProceso
             // 
+            this.textBoxProceso.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBoxProceso.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxProceso.ForeColor = System.Drawing.Color.DimGray;
+            this.textBoxProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxProceso.ForeColor = System.Drawing.Color.Gray;
             this.textBoxProceso.Location = new System.Drawing.Point(0, 0);
             this.textBoxProceso.Multiline = true;
             this.textBoxProceso.Name = "textBoxProceso";
@@ -76,8 +78,10 @@ namespace Calculadora
             // 
             // textBoxOperacion
             // 
+            this.textBoxOperacion.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBoxOperacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBoxOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxOperacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBoxOperacion.Location = new System.Drawing.Point(0, 51);
             this.textBoxOperacion.Multiline = true;
             this.textBoxOperacion.Name = "textBoxOperacion";
@@ -389,6 +393,7 @@ namespace Calculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(443, 621);
             this.Controls.Add(this.bBin);
             this.Controls.Add(this.bClean);
@@ -419,6 +424,7 @@ namespace Calculadora
             this.Controls.Add(this.botonA);
             this.Controls.Add(this.textBoxOperacion);
             this.Controls.Add(this.textBoxProceso);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Calculadora";
             this.Load += new System.EventHandler(this.Form1_Load);

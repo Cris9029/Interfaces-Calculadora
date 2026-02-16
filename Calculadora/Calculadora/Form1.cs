@@ -178,10 +178,8 @@ namespace Calculadora
         //Método para borrar el último caracter
         private void bBorrar_Click(object sender, EventArgs e)
         {
-            if(!nuevoNum && textBoxProceso.Text.Length > 0)
-                textBoxProceso.Text = textBoxProceso.Text.Substring(0, textBoxProceso.Text.Length - 1);
-            if (textBoxOperacion.Text == "")
-                textBoxOperacion.Text = "0";
+            if(!nuevoNum && textBoxOperacion.Text.Length > 0)
+                textBoxOperacion.Text = textBoxOperacion.Text.Substring(0, textBoxProceso.Text.Length - 1);
         }
 
         //Método para mostrar resultado en el textBoxOperacion

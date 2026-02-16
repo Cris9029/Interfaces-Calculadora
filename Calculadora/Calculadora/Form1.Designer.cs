@@ -30,8 +30,11 @@ namespace Calculadora
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBoxProceso = new System.Windows.Forms.TextBox();
             this.textBoxOperacion = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.botonA = new System.Windows.Forms.Button();
             this.botonF = new System.Windows.Forms.Button();
             this.botonE = new System.Windows.Forms.Button();
@@ -63,26 +66,29 @@ namespace Calculadora
             // 
             // textBoxProceso
             // 
+            this.textBoxProceso.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBoxProceso.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxProceso.ForeColor = System.Drawing.Color.DimGray;
+            this.textBoxProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxProceso.ForeColor = System.Drawing.Color.Gray;
             this.textBoxProceso.Location = new System.Drawing.Point(0, 0);
             this.textBoxProceso.Multiline = true;
             this.textBoxProceso.Name = "textBoxProceso";
             this.textBoxProceso.ReadOnly = true;
-            this.textBoxProceso.Size = new System.Drawing.Size(443, 51);
+            this.textBoxProceso.Size = new System.Drawing.Size(432, 51);
             this.textBoxProceso.TabIndex = 0;
             this.textBoxProceso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxOperacion
             // 
+            this.textBoxOperacion.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBoxOperacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBoxOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxOperacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBoxOperacion.Location = new System.Drawing.Point(0, 51);
             this.textBoxOperacion.Multiline = true;
             this.textBoxOperacion.Name = "textBoxOperacion";
             this.textBoxOperacion.ReadOnly = true;
-            this.textBoxOperacion.Size = new System.Drawing.Size(443, 133);
+            this.textBoxOperacion.Size = new System.Drawing.Size(432, 133);
             this.textBoxOperacion.TabIndex = 1;
             this.textBoxOperacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -292,6 +298,7 @@ namespace Calculadora
             this.bRaiz.Size = new System.Drawing.Size(75, 47);
             this.bRaiz.TabIndex = 20;
             this.bRaiz.Text = "√";
+            this.toolTip1.SetToolTip(this.bRaiz, "Resultado truncado a entero");
             this.bRaiz.UseVisualStyleBackColor = true;
             this.bRaiz.Click += new System.EventHandler(this.ClickGeneral);
             // 
@@ -389,7 +396,8 @@ namespace Calculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 621);
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.ClientSize = new System.Drawing.Size(432, 621);
             this.Controls.Add(this.bBin);
             this.Controls.Add(this.bClean);
             this.Controls.Add(this.bBorrar);
@@ -419,6 +427,7 @@ namespace Calculadora
             this.Controls.Add(this.botonA);
             this.Controls.Add(this.textBoxOperacion);
             this.Controls.Add(this.textBoxProceso);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Calculadora";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -436,6 +445,7 @@ namespace Calculadora
 
         private System.Windows.Forms.TextBox textBoxProceso;
         private System.Windows.Forms.TextBox textBoxOperacion;
+        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button botonA;
         private System.Windows.Forms.Button botonF;
         private System.Windows.Forms.Button botonE;
